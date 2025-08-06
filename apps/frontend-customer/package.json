@@ -1,0 +1,19 @@
+{
+  "name": "@fullstack-monorepo/frontend-customer",
+  "private": true,
+  "type": "module",
+  "scripts": {},
+  "sideEffects": false,
+  "dependencies": {
+    "isbot": "^4.4.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "react-router-dom": "^6.29.0",
+    "@fullstack-monorepo/ui-components": "*"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/react": "19.0.0",
+    "@types/react-dom": "19.0.0"
+  }
+}

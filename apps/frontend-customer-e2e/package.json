@@ -1,0 +1,10 @@
+{
+  "name": "@fullstack-monorepo/frontend-customer-e2e",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "implicitDependencies": [
+      "@fullstack-monorepo/frontend-customer"
+    ]
+  }
+}

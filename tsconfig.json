@@ -1,0 +1,22 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compileOnSave": false,
+  "files": [],
+  "references": [
+    {
+      "path": "./apps/frontend-customer-e2e"
+    },
+    {
+      "path": "./apps/frontend-customer"
+    },
+    {
+      "path": "./apps/frontend-admin-e2e"
+    },
+    {
+      "path": "./apps/frontend-admin"
+    },
+    {
+      "path": "./libs/ui-components"
+    }
+  ]
+}
