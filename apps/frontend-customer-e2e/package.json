@@ -4,7 +4,7 @@
   "private": true,
   "nx": {
     "implicitDependencies": [
-      "@fullstack-monorepo/frontend-customer"
+      "frontend-customer"
     ]
   }
 }

@@ -1,4 +1,4 @@
-# NX.dev Fullstack Monorepo Demo
+<!-- # NX.dev Fullstack Monorepo Demo
 
 This is a demonstration of a fullstack monorepo using NX.dev. The project includes:
 
@@ -91,4 +91,125 @@ npx nx build frontend-admin
 ## Learn More
 
 - [NX Documentation](https://nx.dev/)
-- [React Documentation](https://reactjs.org/)
+- [React Documentation](https://reactjs.org/) -->
+
+
+
+# Fullstack Monorepo
+
+This is an Nx workspace containing a fullstack application with:
+- **frontend-admin**: React admin interface
+- **frontend-customer**: React customer interface  
+- **backend**: Node.js Express server
+- **ui-components**: Shared UI component library
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Node.js (v18 or higher)
+- npm or yarn
+
+### Installation
+```bash
+npm install
+```
+
+### Running the Projects
+
+#### Development Mode
+```bash
+# Run all projects in development mode
+npm run dev:admin      # Frontend Admin (port 4200)
+npm run dev:customer   # Frontend Customer (port 4300) 
+npm run dev:backend    # Backend server
+```
+
+#### Build Projects
+```bash
+npm run build:admin    # Build frontend admin
+npm run build:customer # Build frontend customer
+npm run build:backend  # Build backend
+```
+
+#### Testing
+```bash
+npm run test:admin     # Test frontend admin
+npm run test:customer  # Test frontend customer
+npm run test:backend   # Test backend
+```
+
+#### Linting
+```bash
+npm run lint:admin     # Lint frontend admin
+npm run lint:customer  # Lint frontend customer
+npm run lint:backend   # Lint backend
+```
+
+## 🔧 Nx Commands
+
+You can also use Nx directly:
+```bash
+# List all projects
+npx nx show projects
+
+# Run specific targets
+npx nx run frontend-admin:dev
+npx nx run frontend-customer:dev
+npx nx run backend:serve
+
+# Build specific projects
+npx nx run frontend-admin:build
+npx nx run frontend-customer:build
+npx nx run backend:build
+```
+
+## 🐛 Issues Fixed
+
+The following configuration issues were resolved:
+
+1. **Missing project.json files**: Created `project.json` files for:
+   - `apps/frontend-admin/project.json`
+   - `apps/backend/project.json`
+   - `libs/ui-components/project.json`
+
+2. **Implicit dependency errors**: Fixed project references in e2e projects:
+   - Updated `apps/frontend-admin-e2e/package.json`
+   - Updated `apps/frontend-customer-e2e/package.json`
+
+3. **Missing dependencies**: Added required dependencies to:
+   - `apps/frontend-admin/package.json`
+
+4. **Vite configuration**: Fixed plugin configuration in:
+   - `apps/frontend-customer/vite.config.ts`
+
+## 📁 Project Structure
+
+```
+fullstack-monorepo/
+├── apps/
+│   ├── frontend-admin/          # React admin interface
+│   ├── frontend-admin-e2e/      # E2E tests for admin
+│   ├── frontend-customer/       # React customer interface
+│   ├── frontend-customer-e2e/   # E2E tests for customer
+│   └── backend/                 # Node.js Express server
+├── libs/
+│   └── ui-components/           # Shared UI components
+└── package.json                 # Root workspace configuration
+```
+
+## 🛠️ Development
+
+This workspace uses:
+- **Nx** for monorepo management
+- **React** for frontend applications
+- **Vite** for build tooling
+- **TypeScript** for type safety
+- **Jest** for testing
+- **ESLint** for linting
+
+## 📝 Notes
+
+- The frontend applications run on different ports (4200 for admin, 4300 for customer)
+- The backend server can be configured to run on any port
+- All projects share dependencies from the root `package.json`
+- E2E tests are configured for both frontend applications

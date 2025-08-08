@@ -2,7 +2,19 @@
   "name": "@fullstack-monorepo/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "dev:admin": "nx run frontend-admin:dev",
+    "dev:customer": "nx run frontend-customer:dev",
+    "dev:backend": "nx run backend:serve",
+    "build:admin": "nx run frontend-admin:build",
+    "build:customer": "nx run frontend-customer:build",
+    "test:admin": "nx run frontend-admin:test",
+    "test:customer": "nx run frontend-customer:test",
+    "test:backend": "nx run backend:test",
+    "lint:admin": "nx run frontend-admin:lint",
+    "lint:customer": "nx run frontend-customer:lint",
+    "lint:backend": "nx run backend:lint"
+  },
   "private": true,
   "dependencies": {
     "@react-router/node": "^7.2.0",

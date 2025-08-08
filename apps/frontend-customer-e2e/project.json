@@ -1,0 +1,21 @@
+{
+  "name": "frontend-customer-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/frontend-customer-e2e/src",
+  "projectType": "application",
+  "implicitDependencies": ["frontend-customer"],
+  "targets": {
+    "e2e": {
+      "executor": "@nx/playwright:playwright",
+      "options": {
+        "config": "apps/frontend-customer-e2e/playwright.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:eslint",
+      "options": {
+        "lintFilePatterns": ["apps/frontend-customer-e2e/**/*.ts"]
+      }
+    }
+  }
+}
