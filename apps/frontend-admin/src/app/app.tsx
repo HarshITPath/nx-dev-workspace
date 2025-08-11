@@ -6,10 +6,17 @@ import { Route, Routes, Link } from 'react-router-dom';
 // Import shared UI components
 import { Button, Card } from '@fullstack-monorepo/ui-components';
 
+// Import shared utilities
+import { formatDate, capitalize, formatCurrency } from '@fullstack-monorepo/utils';
+
 // Import pages
 import { Products } from './pages/products';
 
 export function App() {
+  const currentDate = formatDate(new Date());
+  const welcomeMessage = capitalize('welcome to admin dashboard');
+  const samplePrice = formatCurrency(1299.99);
+
   return (
     <div className={styles.app}>
       <header className={styles.header}>
@@ -27,8 +34,10 @@ export function App() {
             path="/"
             element={
               <>
-                <Card title="Welcome to Admin Dashboard">
-                  <p>This is a demo of the NX monorepo with shared UI components.</p>
+                <Card title={welcomeMessage}>
+                  <p>This is a demo of the NX monorepo with shared UI components and utilities.</p>
+                  <p>Today's date: <strong>{currentDate}</strong></p>
+                  <p>Sample price formatting: <strong>{samplePrice}</strong></p>
                   <div className={styles.buttons}>
                     <Link to="/products">
                       <Button variant="primary">Manage Products</Button>
@@ -50,8 +59,7 @@ export function App() {
             path="/page-2"
             element={
               <Card title="Settings">
-                <p>This is the settings page of the admin dashboard.</p>
-                <Button variant="secondary" onClick={() => window.history.back()}>Go Back</Button>
+                <p>Settings page content goes here.</p>
               </Card>
             }
           />

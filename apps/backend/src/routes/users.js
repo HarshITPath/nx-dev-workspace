@@ -1,4 +1,4 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
 
 // Mock user data
@@ -44,4 +44,4 @@ router.post('/', (req, res) => {
   res.status(201).json(newUser);
 });
 
-module.exports = router;
+export default router;

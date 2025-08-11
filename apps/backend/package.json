@@ -2,6 +2,7 @@
   "name": "@fullstack-monorepo/backend",
   "version": "1.0.0",
   "description": "Node.js backend for the fullstack monorepo",
+  "type": "module",
   "main": "src/main.js",
   "scripts": {
     "start": "node src/main.js",
@@ -11,7 +12,8 @@
   "dependencies": {
     "express": "^4.18.2",
     "cors": "^2.8.5",
-    "body-parser": "^1.20.2"
+    "body-parser": "^1.20.2",
+    "@fullstack-monorepo/utils": "*"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"

@@ -1,4 +1,4 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
 
 // Mock product data
@@ -62,4 +62,4 @@ router.post('/', (req, res) => {
   res.status(201).json(newProduct);
 });
 
-module.exports = router;
+export default router;

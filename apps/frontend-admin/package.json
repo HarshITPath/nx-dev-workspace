@@ -5,7 +5,8 @@
   "dependencies": {
     "react": "19.0.0",
     "react-dom": "19.0.0",
-    "react-router-dom": "6.29.0"
+    "react-router-dom": "6.29.0",
+    "@fullstack-monorepo/utils": "*"
   },
   "devDependencies": {
     "@types/react": "19.0.0",
