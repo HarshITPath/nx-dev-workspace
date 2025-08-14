@@ -1,20 +1,27 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 const router = express.Router();
 
 // Mock user data
-const users = [
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  role: string;
+}
+
+const users: User[] = [
   { id: 1, name: 'John Doe', email: 'john@example.com', role: 'admin' },
   { id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'customer' },
   { id: 3, name: 'Bob Johnson', email: 'bob@example.com', role: 'customer' }
 ];
 
 // Get all users
-router.get('/', (req, res) => {
+router.get('/', (_req: Request, res: Response) => {
   res.json(users);
 });
 
 // Get user by ID
-router.get('/:id', (req, res) => {
+router.get('/:id', (req: Request, res: Response) => {
   const id = parseInt(req.params.id);
   const user = users.find(user => user.id === id);
   
@@ -26,14 +33,14 @@ router.get('/:id', (req, res) => {
 });
 
 // Create a new user
-router.post('/', (req, res) => {
+router.post('/', (req: Request, res: Response) => {
   const { name, email, role } = req.body;
   
   if (!name || !email) {
     return res.status(400).json({ message: 'Name and email are required' });
   }
   
-  const newUser = {
+  const newUser: User = {
     id: users.length + 1,
     name,
     email,

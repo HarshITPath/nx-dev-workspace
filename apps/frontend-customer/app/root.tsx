@@ -2,11 +2,10 @@ import {
   Outlet,
   ScrollRestoration,
 } from 'react-router-dom';
-
-type MetaFunction = () => Array<{ title?: string; [key: string]: any }>;
-type LinksFunction = () => Array<{ rel: string; href: string; crossOrigin?: string }>;
-
 import { AppNav } from './app-nav';
+
+type MetaFunction = () => Array<{ title?: string; [key: string]: unknown }>;
+type LinksFunction = () => Array<{ rel: string; href: string; crossOrigin?: string }>;
 
 export const meta: MetaFunction = () => [
   {

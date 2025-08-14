@@ -15,41 +15,80 @@
         "development": {
           "mode": "development"
         },
+        "staging": {
+          "mode": "production"
+        },
         "production": {
           "mode": "production"
         }
       }
     },
     "dev": {
-      "executor": "@nx/vite:dev-server",
+      "executor": "nx:run-commands",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "frontend-admin:build"
+        "command": "npx nx run frontend-admin:dev:development"
       },
       "configurations": {
         "development": {
-          "buildTarget": "frontend-admin:build:development",
-          "hmr": true
+          "command": "node scripts/run-with-env.cjs --file apps/frontend-admin/.env --env development -- npx nx run frontend-admin:dev:development"
+        },
+        "staging": {
+          "command": "node scripts/run-with-env.cjs --file apps/frontend-admin/.env --env staging -- npx nx run frontend-admin:dev:staging"
         },
         "production": {
-          "buildTarget": "frontend-admin:build:production",
-          "hmr": false
+          "command": "node scripts/run-with-env.cjs --file apps/frontend-admin/.env --env production -- npx nx run frontend-admin:dev:production"
         }
       }
     },
+    "dev:development": {
+      "executor": "@nx/vite:dev-server",
+      "options": {
+        "buildTarget": "frontend-admin:build:development",
+        "port": 4200
+      }
+    },
+    "dev:staging": {
+      "executor": "@nx/vite:dev-server",
+      "options": {
+        "buildTarget": "frontend-admin:build:staging",
+        "port": 4200,
+        "hmr": false
+      }
+    },
+    "dev:production": {
+      "executor": "@nx/vite:dev-server",
+      "options": {
+        "buildTarget": "frontend-admin:build:production",
+        "port": 4200,
+        "hmr": false
+      }
+    },
     "preview": {
-      "executor": "@nx/vite:preview-server",
+      "executor": "nx:run-commands",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "frontend-admin:build"
+        "command": "npx nx run frontend-admin:preview:development"
       },
       "configurations": {
         "development": {
-          "buildTarget": "frontend-admin:build:development"
+          "command": "node scripts/run-with-env.cjs --file apps/frontend-admin/.env --env development -- npx nx run frontend-admin:preview:development"
         },
         "production": {
-          "buildTarget": "frontend-admin:build:production"
+          "command": "node scripts/run-with-env.cjs --file apps/frontend-admin/.env --env production -- npx nx run frontend-admin:preview:production"
         }
+      }
+    },
+    "preview:development": {
+      "executor": "@nx/vite:preview-server",
+      "options": {
+        "buildTarget": "frontend-admin:build:development"
+      }
+    },
+    "preview:production": {
+      "executor": "@nx/vite:preview-server",
+      "options": {
+        "buildTarget": "frontend-admin:build:production"
       }
     },
     "test": {
@@ -69,4 +108,4 @@
     }
   },
   "tags": []
-} 
+}

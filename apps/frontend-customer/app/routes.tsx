@@ -1,4 +1,3 @@
-import { createBrowserRouter } from 'react-router-dom';
 import App from './app';
 import About from './routes/about';
 

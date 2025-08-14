@@ -2,20 +2,20 @@
 import styles from './app.module.css';
 
 import { Route, Routes, Link } from 'react-router-dom';
+import { useMemo } from 'react';
 
 // Import shared UI components
 import { Button, Card } from '@fullstack-monorepo/ui-components';
 
 // Import shared utilities
-import { formatDate, capitalize, formatCurrency } from '@fullstack-monorepo/utils';
+import { formatDate, capitalize } from '@fullstack-monorepo/utils';
 
 // Import pages
 import { Products } from './pages/products';
 
 export function App() {
-  const currentDate = formatDate(new Date());
-  const welcomeMessage = capitalize('welcome to admin dashboard');
-  const samplePrice = formatCurrency(1299.99);
+  const currentDate = useMemo(() => formatDate(new Date()), []);
+  const welcomeMessage = useMemo(() => capitalize('welcome to admin dashboard'), []);
 
   return (
     <div className={styles.app}>
@@ -35,9 +35,9 @@ export function App() {
             element={
               <>
                 <Card title={welcomeMessage}>
-                  <p>This is a demo of the NX monorepo with shared UI components and utilities.</p>
+                  <p>This is a simple NX monorepo admin app.</p>
                   <p>Today's date: <strong>{currentDate}</strong></p>
-                  <p>Sample price formatting: <strong>{samplePrice}</strong></p>
+
                   <div className={styles.buttons}>
                     <Link to="/products">
                       <Button variant="primary">Manage Products</Button>
@@ -45,11 +45,6 @@ export function App() {
                     <Button variant="secondary">View Reports</Button>
                     <Button variant="danger">System Settings</Button>
                   </div>
-                </Card>
-
-                <Card title="Home Page">
-                  <p>This is the home page of the admin dashboard.</p>
-                  <Button onClick={() => alert('Button clicked!')}>Click Me</Button>
                 </Card>
               </>
             }

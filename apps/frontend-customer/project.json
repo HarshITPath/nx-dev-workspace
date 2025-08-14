@@ -15,41 +15,80 @@
         "development": {
           "mode": "development"
         },
+        "staging": {
+          "mode": "production"
+        },
         "production": {
           "mode": "production"
         }
       }
     },
     "dev": {
-      "executor": "@nx/vite:dev-server",
+      "executor": "nx:run-commands",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "frontend-customer:build"
+        "command": "npx nx run frontend-customer:dev:development"
       },
       "configurations": {
         "development": {
-          "buildTarget": "frontend-customer:build:development",
-          "hmr": true
+          "command": "node scripts/run-with-env.cjs --file apps/frontend-customer/.env --env development -- npx nx run frontend-customer:dev:development"
+        },
+        "staging": {
+          "command": "node scripts/run-with-env.cjs --file apps/frontend-customer/.env --env staging -- npx nx run frontend-customer:dev:staging"
         },
         "production": {
-          "buildTarget": "frontend-customer:build:production",
-          "hmr": false
+          "command": "node scripts/run-with-env.cjs --file apps/frontend-customer/.env --env production -- npx nx run frontend-customer:dev:production"
         }
       }
     },
+    "dev:development": {
+      "executor": "@nx/vite:dev-server",
+      "options": {
+        "buildTarget": "frontend-customer:build:development",
+        "port": 4300
+      }
+    },
+    "dev:staging": {
+      "executor": "@nx/vite:dev-server",
+      "options": {
+        "buildTarget": "frontend-customer:build:staging",
+        "port": 4300,
+        "hmr": false
+      }
+    },
+    "dev:production": {
+      "executor": "@nx/vite:dev-server",
+      "options": {
+        "buildTarget": "frontend-customer:build:production",
+        "port": 4300,
+        "hmr": false
+      }
+    },
     "preview": {
-      "executor": "@nx/vite:preview-server",
+      "executor": "nx:run-commands",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "frontend-customer:build"
+        "command": "npx nx run frontend-customer:preview:development"
       },
       "configurations": {
         "development": {
-          "buildTarget": "frontend-customer:build:development"
+          "command": "node scripts/run-with-env.cjs --file apps/frontend-customer/.env --env development -- npx nx run frontend-customer:preview:development"
         },
         "production": {
-          "buildTarget": "frontend-customer:build:production"
+          "command": "node scripts/run-with-env.cjs --file apps/frontend-customer/.env --env production -- npx nx run frontend-customer:preview:production"
         }
+      }
+    },
+    "preview:development": {
+      "executor": "@nx/vite:preview-server",
+      "options": {
+        "buildTarget": "frontend-customer:build:development"
+      }
+    },
+    "preview:production": {
+      "executor": "@nx/vite:preview-server",
+      "options": {
+        "buildTarget": "frontend-customer:build:production"
       }
     },
     "test": {

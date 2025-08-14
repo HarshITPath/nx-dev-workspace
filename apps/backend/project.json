@@ -8,15 +8,34 @@
       "executor": "nx:run-commands",
       "defaultConfiguration": "development",
       "options": {
-        "command": "node apps/backend/src/main.js"
+        "command": "node scripts/run-with-env.cjs --file apps/backend/.env --env development -- npx tsx watch apps/backend/src/main.ts"
       },
       "configurations": {
         "development": {
-          "command": "node apps/backend/src/main.js"
+          "command": "node scripts/run-with-env.cjs --file apps/backend/.env --env development -- npx tsx watch apps/backend/src/main.ts"
+        },
+        "staging": {
+          "command": "node scripts/run-with-env.cjs --file apps/backend/.env --env staging -- npx tsx watch apps/backend/src/main.ts"
         },
         "production": {
-          "command": "node apps/backend/src/main.js"
+          "command": "node scripts/run-with-env.cjs --file apps/backend/.env --env production -- npx tsx apps/backend/src/main.ts"
         }
+      }
+    },
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/backend",
+        "main": "apps/backend/src/main.ts",
+        "tsConfig": "apps/backend/tsconfig.app.json"
+      }
+    },
+    "start": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "node dist/apps/backend/main.js"
       }
     },
     "test": {
@@ -35,4 +54,4 @@
     }
   },
   "tags": []
-} 
+}
